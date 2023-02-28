@@ -6,18 +6,41 @@ const initialForm = {
     id: null
 };
 
-const CrudForm = () => {
+const CrudForm = ({createData, updateData, dataToEdit, setDataToEdit}) => {
     const [form, setForm] = useState(initialForm);
 
 
     {/* Controlar cambios */}
-    const handleChange = (e) => {}
+    const handleChange = (e) => {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
+    };
 
     {/* Envio del formulario */}
-    const handleSubmit = (e) => {}
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+      if(!form.name || !form.country){
+        alert("Datos incompletos");
+        return;
+      }
+
+      if(form.id === null){
+        createData(form);
+      }else{
+        updateData(form);
+      }
+
+      handleReset();
+    };
 
     {/* Borrar datos form */}
-    const handleReset = (e) => {}
+    const handleReset = (e) => {
+      setForm(initialForm);
+      setDataToEdit(null);
+    };
   return (
       <>
         <h3>Agregar</h3>
@@ -30,7 +53,7 @@ const CrudForm = () => {
             value={form.name}/>
             <input 
             type="text" 
-            name="contellation" 
+            name="country" 
             placeholder="País" 
             onChange={handleChange} 
             value={form.country}/>

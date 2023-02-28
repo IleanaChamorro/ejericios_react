@@ -34,7 +34,12 @@ export const CrudApp = () => {
   const [db, setDb] = useState(initialDB);
   const [dataToEdit, setDataToEdit] = useState(null);
 
-  const createData = (data) => {};
+  const createData = (data) => {
+      //nuevo valor para id de data
+      data.id = Date.now();
+      //Traer lo que ya tiene la base de datos y lo combina con spread operator con data
+      setDb([...db, data]);
+  };
 
 
   const updateData = (data) => {};
@@ -44,8 +49,15 @@ export const CrudApp = () => {
   return (
     <>
     <h2>CRUD APP</h2>
-    <CrudForm/>
-    <CrudTable data={db} />
+    <CrudForm createData={createData} 
+    updateData={updateData} 
+    dataToEdit={dataToEdit} 
+    setDataToEdit={setDataToEdit}
+    />
+    <CrudTable 
+    data={db}
+    setDataToEdit={setDataToEdit} 
+    deleteData={deleteData}/>
     </> 
   )
 }
