@@ -10,6 +10,15 @@ const CrudForm = ({createData, updateData, dataToEdit, setDataToEdit}) => {
     const [form, setForm] = useState(initialForm);
 
 
+    //Cuando detecte que la variable "dataToEdit" cambie 
+    useEffect(() => {
+      //si trae algo, editar con valor nuevo
+      if(dataToEdit){
+        setForm(dataToEdit);
+      }else{
+        setForm(initialForm);
+      }
+    }, [dataToEdit]);
     {/* Controlar cambios */}
     const handleChange = (e) => {
       setForm({
@@ -42,8 +51,8 @@ const CrudForm = ({createData, updateData, dataToEdit, setDataToEdit}) => {
       setDataToEdit(null);
     };
   return (
-      <>
-        <h3>Agregar</h3>
+      <div>
+        <h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
         <form onSubmit={handleSubmit}>
             <input 
             type="text" 
@@ -60,7 +69,7 @@ const CrudForm = ({createData, updateData, dataToEdit, setDataToEdit}) => {
             <input type="submit" value="Enviar" onClick={handleSubmit}/>
             <input type="reset" value="Limpiar" onClick={handleReset}/>
         </form>
-      </>
+      </div>
   )
 }
 
