@@ -1,0 +1,29 @@
+{
+    "jugadores": [
+        {
+            "id": 1,
+            "name": "Lionel Messi",
+            "country": "Arg"
+        },
+        {
+            "id": 2,
+            "name": "Cristiano Ronaldo",
+            "country": "Portugal"
+        },
+        {
+            "id": 3,
+            "name": "Kylian Mbappé",
+            "country": "France"
+        },
+        {
+            "id": 4,
+            "name": "Erling Haaland",
+            "country": "United Kingdom"
+        },
+        {
+            "id": 5,
+            "name": "Antoine Griezmann",
+            "country": "France"
+        }
+    ]
+}
