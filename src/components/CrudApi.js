@@ -1,10 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import CrudForm from './CrudForm';
 import CrudTable from './CrudTable';
+import { helpHttp } from "../helpers/helpHttp";
 
 const CrudApi = () => {
   const [db, setDb] = useState([]);
   const [dataToEdit, setDataToEdit] = useState(null);
+
+  let api = helpHttp();
+  let url = "http://localhost:5000/jugadores";
+
+  useEffect(() => {
+    api.get(url).then(res => console.log(res));
+  }, [])
+
 
   const createData = (data) => {
       //nuevo valor para id de data
@@ -35,7 +44,7 @@ const CrudApi = () => {
 
   return (
     <>
-    <h2>CRUD APP</h2>
+    <h2>CRUD API</h2>
     <article className="grid-1-2">
 
     <CrudForm createData={createData} 
